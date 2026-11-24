@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNS Notification Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="topbar">
+        <div class="nav-container">
+            <span class="project-title">SNS Notification Portal</span>
+            <span class="tech-stack">AWS Lambda + Amazon SNS</span>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <div id="msgBanner" class="banner"></div>
+
+        <div class="panels-row">
+            <!-- Subscription Card -->
+            <div class="box">
+                <h3>1. Add Subscriber</h3>
+                <p class="hint">Register an email endpoint to the SNS topic.</p>
+                
+                <label for="emailInput">Email Address</label>
+                <input type="email" id="emailInput" placeholder="user@example.com">
+                
+                <button id="subBtn" class="btn-dark" onclick="subscribeUser()">Subscribe</button>
+            </div>
+
+            <!-- Broadcast Card -->
+            <div class="box">
+                <h3>2. Broadcast Notification</h3>
+                <p class="hint">Trigger Lambda function to publish message to all subscribers.</p>
+                
+                <label for="subjectInput">Subject</label>
+                <input type="text" id="subjectInput" placeholder="Notification subject">
+
+                <label for="messageInput">Message</label>
+                <textarea id="messageInput" rows="4" placeholder="Enter message body..."></textarea>
+
+                <button id="pubBtn" class="btn-orange" onclick="publishMessage()">Send Notification</button>
+            </div>
+        </div>
+
+        <!-- Activity Log Table -->
+        <div class="box log-box">
+            <div class="log-header">
+                <h3>Request Logs</h3>
+                <button class="btn-small" onclick="clearLogs()">Clear</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>Payload / Target</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody id="logBody">
+                    <tr id="noDataRow">
+                        <td colspan="4" class="empty-text">No requests sent yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
